@@ -33,6 +33,11 @@ struct ContentView: View {
                 selectedFood = food.shuffled().first
             }.font(.title)
                 .buttonStyle(.borderedProminent)
+            
+            Button("Reset!") {
+                selectedFood = food.shuffled().first
+            }.font(.title)
+                .buttonStyle(.borderedProminent)
         }
         .padding()
         .animation(.easeInOut, value: selectedFood)
