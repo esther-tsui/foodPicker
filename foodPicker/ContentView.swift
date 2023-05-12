@@ -35,6 +35,7 @@ struct ContentView: View {
                 .buttonStyle(.borderedProminent)
         }
         .padding()
+        .animation(.easeInOut, value: selectedFood)
     }
 }
 
