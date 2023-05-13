@@ -17,9 +17,8 @@ struct ContentView: View {
             Image("dinner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                
-            Text("Waht to eat today?")
-                .font(.title)
+            
+            Text("What to eat today?")
                 .bold()
             
             if selectedFood != .none {
@@ -27,20 +26,28 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .foregroundColor(.green)
             }
-
-
-            Button("Tell me!") {
-                selectedFood = food.shuffled().first
-            }.font(.title)
-                .buttonStyle(.borderedProminent)
             
-            Button("Reset!") {
+            Button {
                 selectedFood = food.shuffled().first
-            }.font(.title)
-                .buttonStyle(.borderedProminent)
+            } label: {
+                Text(selectedFood == .none ? "Tell me!" : "Next").frame(width: 200)
+            }.padding(.bottom, -15)
+            
+            Button {
+                selectedFood = .none
+            } label: {
+                Text("Reset!").frame(width: 200)
+            }.buttonStyle(.bordered)
+            
         }
-        .padding()
+        .frame(maxHeight: .infinity)
+        .background(Color(.secondarySystemBackground))
+        .font(.title)
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
+        .controlSize(.large)
         .animation(.easeInOut, value: selectedFood)
+        .padding()
     }
 }
 
