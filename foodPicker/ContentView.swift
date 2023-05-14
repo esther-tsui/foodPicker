@@ -25,12 +25,15 @@ struct ContentView: View {
                 Text(selectedFood ?? "")
                     .font(.largeTitle)
                     .foregroundColor(.green)
+                    .id(selectedFood)
+                    .transition(.asymmetric(insertion: .opacity.animation(.easeInOut(duration: 0.5).delay(0.2)), removal: .opacity).animation(.easeInOut(duration: 0.4)))
             }
             
             Button {
                 selectedFood = food.shuffled().first
             } label: {
                 Text(selectedFood == .none ? "Tell me!" : "Next").frame(width: 200)
+                    .transformEffect(.identity)
             }.padding(.bottom, -15)
             
             Button {
@@ -48,6 +51,7 @@ struct ContentView: View {
         .controlSize(.large)
         .animation(.easeInOut, value: selectedFood)
         .padding()
+        .ignoresSafeArea()
     }
 }
 
